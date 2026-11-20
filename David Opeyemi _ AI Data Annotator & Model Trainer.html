@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>David Opeyemi | AI Data Annotator & Model Trainer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF1F4; --surface:#FFFFFF; --ink:#16222E; --muted:#51606E; --line:#CBD3DB; --accent:#0B5D7A; --accent-soft:#D6E8EF; --bar:#9DB4C0;
+  color-scheme:light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#121A22;--surface:#1A242E;--ink:#E6ECF1;--muted:#9FAEBB;--line:#2E3B47;--accent:#6FC2DE;--accent-soft:#1F3A47;--bar:#3F5767;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#121A22;--surface:#1A242E;--ink:#E6ECF1;--muted:#9FAEBB;--line:#2E3B47;--accent:#6FC2DE;--accent-soft:#1F3A47;--bar:#3F5767;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 "Public Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif;font-weight:600;margin:0;letter-spacing:-.01em}
+header.top{padding:22px 0}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.mark{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:1.2rem;text-decoration:none;color:var(--ink)}
+nav a{color:var(--muted);text-decoration:none;margin-left:22px;font-size:.95rem}
+nav a:hover{color:var(--accent)}
+.hero{padding:56px 0 72px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:center}
+h1{font-size:clamp(2.8rem,6.4vw,4.8rem);line-height:1.02}
+.role{font-family:"Newsreader",Georgia,serif;font-size:1.45rem;color:var(--accent);margin:14px 0 22px}
+.lede{color:var(--muted);max-width:34em;margin:0 0 28px}
+.facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin:0;padding:0;list-style:none;font-size:.95rem}
+.facts li{padding-left:14px;border-left:2px solid var(--accent)}
+.eval{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px}
+.eval h2{font-size:1.15rem;margin-bottom:4px}
+.eval p.s{margin:0 0 16px;color:var(--muted);font-size:.9rem}
+.tabs{display:flex;gap:8px;margin-bottom:18px}
+.tabs button{flex:1;font:500 .95rem "Public Sans",sans-serif;padding:9px 12px;border-radius:6px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.row{margin-bottom:14px}
+.row .l{display:flex;justify-content:space-between;font-size:.92rem;margin-bottom:5px}
+.track{height:8px;background:var(--accent-soft);border-radius:4px;overflow:hidden}
+.fill{height:100%;background:var(--accent);width:0;transition:width .45s ease}
+.note{margin:18px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:.92rem;color:var(--muted);min-height:3.3em}
+section{padding:64px 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(1.8rem,3.6vw,2.4rem);margin-bottom:28px}
+.about{max-width:42em}
+.about p{margin:0 0 1em}
+.job{display:grid;grid-template-columns:230px 1fr;gap:12px 40px;padding:28px 0;border-bottom:1px solid var(--line)}
+.job:first-of-type{padding-top:0}
+.job:last-of-type{border-bottom:0;padding-bottom:0}
+.job .meta{color:var(--muted);font-size:.95rem}
+.job .meta strong{display:block;color:var(--ink);font-weight:600;font-size:1.05rem}
+.job h3{font-size:1.35rem;margin-bottom:10px}
+.job ul{margin:0;padding-left:1.1em;max-width:46em}
+.job li{margin-bottom:.55em}
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:32px 56px}
+.skills h3{font-size:1.2rem;margin-bottom:8px;color:var(--accent)}
+.skills p{margin:0;color:var(--muted)}
+.edu{display:grid;grid-template-columns:1fr 1fr;gap:32px 56px}
+.edu h3{font-size:1.25rem}
+.edu p{margin:4px 0 0;color:var(--muted)}
+footer{padding:48px 0 56px;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media (max-width:820px){
+  .hero .wrap,.skills,.edu{grid-template-columns:1fr}
+  .hero{padding-top:28px}
+  .job{grid-template-columns:1fr}
+  nav a{margin-left:14px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.fill{transition:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="mark" href="#top">David Opeyemi</a>
+  <nav aria-label="Sections"><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="https://www.linkedin.com/in/david-opeyemi-45b4a1269/" target="_blank" rel="noopener">LinkedIn</a></nav>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+  <div>
+    <h1>David Opeyemi</h1>
+    <p class="role">AI data annotator and model trainer</p>
+    <p class="lede">I help improve large language models and generative AI systems by rating, ranking, and stress-testing their outputs against detailed rubrics. Over three years, I have worked on selective, invite-only projects across Outlier, DataAnnotation, Scale AI, and Prolific.</p>
+    <ul class="facts">
+      <li>3+ years of contract work</li>
+      <li>Fully remote, from Ibadan, Nigeria</li>
+      <li>Microbiology student, University of Ibadan</li>
+    </ul>
+  </div>
+  <div class="eval" aria-labelledby="evt">
+    <h2 id="evt">How I score a response</h2>
+    <p class="s">A simplified example of rubric-based evaluation. Select a response to compare.</p>
+    <div class="tabs" role="group" aria-label="Response">
+      <button type="button" data-r="a" aria-pressed="true">Response A</button>
+      <button type="button" data-r="b" aria-pressed="false">Response B</button>
+    </div>
+    <div id="rows"></div>
+    <p class="note" id="note" aria-live="polite"></p>
+  </div>
+</div></div>
+
+<section id="about"><div class="wrap about">
+  <h2>About</h2>
+  <p>I work on the human side of AI training: reading model outputs closely, applying multi-step guidelines consistently, and explaining every judgment so reviewers can follow my reasoning.</p>
+  <p>My studies in Biological Sciences shape how I work. I check claims against reliable sources, separate what is shown from what is assumed, and document what I did and why. I work independently in remote, asynchronous teams and keep to the quality thresholds that selective projects require.</p>
+</div></section>
+
+<section id="experience"><div class="wrap">
+  <h2>Experience</h2>
+
+  <article class="job">
+    <div class="meta"><strong>Outlier</strong>2024 to present<br>Remote, contract</div>
+    <div>
+      <h3>AI Data Annotator &amp; Model Trainer</h3>
+      <ul>
+        <li>Annotate and verify data across modalities: image entity verification, video temporal alignment, text-to-image comparison, text-to-speech audio evaluation, and side-by-side AI-generated video assessment.</li>
+        <li>Carry out browser-based annotation tasks that need precise navigation, targeted on-screen actions, and screenshot capture and markup to the prompt’s specification.</li>
+        <li>Evaluate image-to-code outputs by comparing rendered interfaces with the source designs, and document differences in layout, styling, and functionality in structured notes.</li>
+        <li>Write and stress-test prompts that expose model weaknesses, producing training data that improves reasoning, factual accuracy, and edge-case handling.</li>
+        <li>Completed the platform’s Advanced Prompt Engineering certification and kept the accuracy benchmarks needed for advanced, invite-only projects.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="job">
+    <div class="meta"><strong>DataAnnotation</strong>2023 to 2025<br>Remote, contract</div>
+    <div>
+      <h3>AI Response Evaluator &amp; Content Writer</h3>
+      <ul>
+        <li>Rated and ranked AI responses in general knowledge, business, education, and lifestyle, using rubrics for accuracy, helpfulness, coherence, and instruction-following.</li>
+        <li>Wrote and fact-checked model responses, verifying claims against credible sources and fixing factual, logical, and clarity problems.</li>
+        <li>Gave a concise justification for every rating and edit, which supported auditability and reviewer alignment.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="job">
+    <div class="meta"><strong>Scale AI</strong>2023 to 2024<br>Remote, contract</div>
+    <div>
+      <h3>Data Annotation Specialist</h3>
+      <ul>
+        <li>Applied complex, frequently updated labeling guidelines to categorize data consistently and stayed in strong agreement with platform quality standards.</li>
+        <li>Reviewed annotations for quality, identified inconsistencies, and documented corrections to make datasets more reliable.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="job">
+    <div class="meta"><strong>Prolific</strong>2023 to 2024<br>Remote, contract</div>
+    <div>
+      <h3>Research Study Participant &amp; Human Feedback Contributor</h3>
+      <ul>
+        <li>Provided human feedback for AI research studies run by academic and industry teams, including preference judgments, comprehension tasks, and behavioral evaluations.</li>
+        <li>Kept top-tier approval ratings by following study instructions exactly and answering with care.</li>
+      </ul>
+    </div>
+  </article>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div><h3>Evaluation and rubrics</h3><p>Applying and refining rubrics, rating and ranking responses, side-by-side model comparison, and writing clear evaluation documentation.</p></div>
+    <div><h3>Annotation across modalities</h3><p>Labeling and verifying text, image, video, audio, and UI data with high consistency.</p></div>
+    <div><h3>Prompt engineering</h3><p>Interpreting prompts, writing new ones, and stress-testing models to find where they fail.</p></div>
+    <div><h3>Fact-checking</h3><p>Checking content against reliable sources and correcting factual, logical, and clarity issues.</p></div>
+    <div><h3>Browser-based workflows</h3><p>Accurate navigation, targeted actions, and screenshot capture and annotation.</p></div>
+    <div><h3>Quality assurance</h3><p>Consistency reviews, inter-rater alignment, and structured task reporting.</p></div>
+  </div>
+</div></section>
+
+<section id="education"><div class="wrap">
+  <h2>Education and certification</h2>
+  <div class="edu">
+    <div><h3>B.Sc. Biological Sciences (Microbiology)</h3><p>University of Ibadan, Ibadan, Oyo State, Nigeria. In progress.</p></div>
+    <div><h3>Advanced Prompt Engineering: Model Stumps</h3><p>Outlier platform certification.</p></div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <span>David Opeyemi</span>
+  <span>Open to remote roles in AI training and evaluation. Connect with me on <a href="https://www.linkedin.com/in/david-opeyemi-45b4a1269/" target="_blank" rel="noopener">LinkedIn</a>.</span>
+</div></footer>
+
+<script>
+(function(){
+  var data={
+    a:{s:[5,4,5,4],n:"Accurate and well organized. It follows the instructions closely, but one step could be clearer, so helpfulness loses a point."},
+    b:{s:[2,4,3,2],n:"Reads smoothly, but it states an unsupported claim and skips part of the instruction. Accuracy and instruction-following score low."}
+  };
+  var names=["Accuracy","Helpfulness","Coherence","Instruction-following"];
+  var rows=document.getElementById("rows"),note=document.getElementById("note");
+  rows.innerHTML=names.map(function(n,i){
+    return '<div class="row"><div class="l"><span>'+n+'</span><span id="v'+i+'"></span></div><div class="track"><div class="fill" id="f'+i+'"></div></div></div>';
+  }).join("");
+  function show(k){
+    data[k].s.forEach(function(v,i){
+      document.getElementById("v"+i).textContent=v+" / 5";
+      document.getElementById("f"+i).style.width=(v*20)+"%";
+    });
+    note.textContent=data[k].n;
+    document.querySelectorAll(".tabs button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.r===k)});
+  }
+  document.querySelectorAll(".tabs button").forEach(function(b){b.addEventListener("click",function(){show(b.dataset.r)})});
+  setTimeout(function(){show("a")},150);
+})();
+</script>
+</body>
+</html>
